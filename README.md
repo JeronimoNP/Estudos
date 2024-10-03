@@ -1,96 +1,56 @@
 # Estudos
 
+readme_content_expanded = """
 # 🛒 Aplicativo de Lista de Compras com Atualização em Tempo Real
 
-## Descrição do Projeto
-Este projeto é um **aplicativo colaborativo de lista de compras**, projetado para permitir que grupos de pessoas, como famílias ou amigos, compartilhem e atualizem listas em tempo real. Utilizando tecnologias modernas de backend e frontend, a aplicação oferece uma experiência dinâmica e eficiente para gerenciar as compras do dia a dia.
+## 📚 Visão Geral
+Este projeto é um aplicativo colaborativo para gerenciar listas de compras em tempo real. Ele permite que vários usuários compartilhem, visualizem e editem listas de compras de forma sincronizada. A proposta é facilitar a organização de grupos como famílias ou colegas de quarto, onde todos podem contribuir para a lista e mantê-la atualizada com itens a serem comprados ou já adquiridos.
 
-## Funcionalidades
-- **Atualização em Tempo Real:** Utiliza WebSocket para garantir que qualquer mudança na lista seja instantaneamente refletida para todos os membros do grupo.
-- **Sistema de Login:** Autenticação de usuários com JWT para garantir que somente pessoas autorizadas possam acessar as listas.
-- **Gestão de Grupos:** Permite que grupos de usuários compartilhem e colaborem em múltiplas listas de compras.
-- **Gerenciamento de Itens:** Adicione, edite e remova itens da lista com facilidade, além de marcar itens como comprados ou não comprados.
-- **Responsividade:** A interface foi projetada para funcionar bem em diferentes dispositivos, como smartphones, tablets e desktops.
+## 🚀 Tecnologias Utilizadas
+- **Backend**: Go (framework Gin ou Echo) – para a criação de APIs eficientes e seguras.
+- **WebSockets**: Gorilla WebSocket – para garantir a atualização em tempo real das listas.
+- **Banco de Dados**: MySQL usando o ORM GORM – para manipulação dos dados de maneira estruturada e relacional.
+- **Autenticação**: JWT para autenticação e controle de acesso seguro e bcrypt para o hash de senhas.
+- **Frontend**: React – para uma interface amigável e responsiva, utilizando componentes dinâmicos.
 
-## Tecnologias Utilizadas
-- **Frontend:** React para a construção da interface do usuário.
-- **Backend:** Node.js com Express para o servidor e lógica de negócios.
-- **Banco de Dados:** MySQL utilizando o Sequelize para o mapeamento objeto-relacional.
-- **Autenticação:** JWT (JSON Web Token) para autenticação segura de usuários.
-- **Comunicação em Tempo Real:** WebSocket para sincronização em tempo real entre os usuários.
-- **Gerenciamento de Senhas:** Bcrypt para hash de senhas e segurança de dados.
+## 🎯 Funcionalidades
+- **CRUD de listas de compras**: Funções para criar, editar, deletar e visualizar itens em uma lista de compras.
+- **Sincronização em tempo real**: Qualquer alteração feita por um usuário é instantaneamente refletida para todos os outros conectados.
+- **Sistema de login e registro de usuários**: Autenticação utilizando JWT, com proteção para rotas privadas.
+- **Gerenciamento de grupos**: Vários usuários podem compartilhar a mesma lista, adicionando e removendo itens de maneira colaborativa.
+- **Marcação de itens**: Permite que os usuários marquem itens como “comprados” ou “não comprados”.
 
-## Como Executar o Projeto
+## 📑 Documentação de Requisitos
+O aplicativo foi desenhado com base em três pilares principais:
+1. **Segurança**: Autenticação segura com JWT e criptografia de senhas com bcrypt.
+2. **Escalabilidade**: Implementação de um sistema que permita a adição de novos grupos e usuários sem comprometer o desempenho.
+3. **Experiência do Usuário**: Foco em uma interface simples e responsiva, com atualizações em tempo real para evitar a necessidade de recarregar a página.
 
-### 1. Requisitos
-- Node.js (v14 ou superior)
-- MySQL (v8 ou superior)
-- Yarn ou NPM
+### Funcionalidades Principais:
+- **Autenticação**:
+  - Registro de novos usuários com validação de dados.
+  - Login e geração de tokens JWT para acesso.
+  - Rota protegida para recuperação de listas.
 
-### 2. Configuração do Backend
-\`\`\`bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+- **Gerenciamento de Listas**:
+  - Criação de novas listas por usuários autenticados.
+  - Edição de listas existentes (nome, itens).
+  - Marcação de itens como comprados.
+  - Exclusão de listas.
 
-# Instale as dependências
-cd backend
-yarn install
+- **Grupos Compartilhados**:
+  - Convite para outros usuários se unirem ao grupo e compartilharem a mesma lista de compras.
+  - Atualizações instantâneas para todos os usuários do grupo em tempo real.
 
-# Crie um arquivo .env com as seguintes variáveis:
-# - DATABASE_URL: URL de conexão do MySQL
-# - JWT_SECRET: Chave secreta para JWT
-# - WEBSOCKET_PORT: Porta para o WebSocket
+## 🛠️ Instalação e Configuração
 
-# Execute as migrações do banco de dados
-yarn sequelize db:migrate
+### Pré-requisitos
+- **Go**: Certifique-se de ter o Go instalado. [Download Go](https://golang.org/dl/)
+- **MySQL**: O banco de dados MySQL deve estar configurado e rodando.
+- **Node.js**: Para o frontend com React, você precisará de Node.js instalado. [Download Node.js](https://nodejs.org/)
 
-# Inicie o servidor
-yarn start
-\`\`\`
-
-### 3. Configuração do Frontend
-\`\`\`bash
-# Instale as dependências
-cd frontend
-yarn install
-
-# Inicie o frontend
-yarn start
-\`\`\`
-
-### 4. Executar a Aplicação
-Acesse a aplicação no navegador: \`http://localhost:3000\`.
-
-## Estrutura do Projeto
-\`\`\`bash
-├── backend/                # Código do servidor e API
-│   ├── models/             # Modelos do banco de dados (Sequelize)
-│   ├── controllers/        # Lógica de controle
-│   ├── routes/             # Rotas da API
-│   ├── middlewares/        # Middlewares como autenticação JWT
-│   └── sockets/            # Configuração do WebSocket
-├── frontend/               # Código do frontend em React
-│   ├── components/         # Componentes React reutilizáveis
-│   ├── pages/              # Páginas da aplicação
-│   ├── services/           # Serviços de API
-│   └── hooks/              # Hooks customizados para gerenciar estado e lógica
-└── README.md               # Documentação do projeto
-\`\`\`
-
-## Roadmap
-- [x] Sistema de login e autenticação com JWT
-- [x] Atualização em tempo real usando WebSocket
-- [x] Gerenciamento de listas e itens
-- [ ] Notificações de alteração de lista
-- [ ] Implementação de lista offline com sincronização
-
-## Contribuição
-Contribuições são bem-vindas! Siga os passos abaixo:
-1. Fork este repositório.
-2. Crie uma nova branch (\`git checkout -b feature/nome-da-feature\`).
-3. Commit suas alterações (\`git commit -m 'Adiciona nova feature'\`).
-4. Envie para a branch original (\`git push origin feature/nome-da-feature\`).
-5. Crie um Pull Request.
-
-## Licença
-Distribuído sob a licença MIT. Veja \`LICENSE\` para mais informações.
+### Configuração do Backend
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   cd backend
