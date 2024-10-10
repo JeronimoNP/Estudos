@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Estudos/routes"
 	"fmt"
 	"net/http"
 )
@@ -14,6 +15,8 @@ func main() {
 	//local onde vai ficar os arquivos de requisição de pagina principal.
 	fs := http.FileServer(http.Dir("../Estudos/Front-End/main"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	routes.Teste()
 
 	http.ListenAndServe(":80", nil)
 }
